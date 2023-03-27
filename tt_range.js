@@ -13,6 +13,8 @@
  * range(5, 5, -1) [5]                      10) start와 end가 같고 cv가 0보다 작은, -1(음수)인 경우
  * range(5, 1, 1) []                        11) start가 end 보다 크면서 cv가 양수인 경우
  * range(1, 5, -1) []                       12) start가 end 보다 작은데 cv가 음수인 경우
+ * range(0,5) [0,1,2,3,4,5]                 13) start가 0이고 end가 start보다 크며, cv 값이 주어지지 않은 경우
+ * range(0, -1) [0, -1]                     14) start가 0이고 end가 start보다 작으며 음수, cv 값은 주어지지 않은 경우
  */
 
 const range = (start, end, cv) => {
