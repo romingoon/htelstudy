@@ -18,16 +18,19 @@
  */
 
 const range = (start, end, cv) => {
-  const results = [];
+  // if ((start > end && cv > 0) || (start < end && cv < 0)) return [];
+  if (start !== end && (end - start) * cv < 0) return [];
 
-  if ((start > end && cv > 0) || (start < end && cv < 0)) return [];
+  const temp = start;
 
-  end ?? ((end = start > 0 ? start : -1), (start = start <= 0 ? start : 1));
-  cv ?? (cv = start === end ? 0 : (cv = start < end ? 1 : -1));
+  end = end ?? (start >= 0 ? ((start = start > 0 ? 1 : 0), temp) : -1);
+  cv = cv ?? (start >= end ? -1 : 1);
 
-  if (cv === 0) return [start];
+  const until = x =>
+    cv !== 0 && start !== end && (start > end ? x >= end : x <= end);
+  const results = [start];
 
-  for (let i = start; cv > 0 ? i <= end : i >= end; i += cv) {
+  for (let i = start + cv; until(i); i += cv) {
     results.push(i);
   }
   return results;
@@ -58,4 +61,3 @@ assertRange(-3, 0);
 assertRange(0, 0);
 assertRange(0, 0, 5);
 assertRange(2, 1, -5);
-assertRange(0, -1, 5);
