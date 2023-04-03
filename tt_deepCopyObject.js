@@ -7,9 +7,9 @@ const kim = {
 
 const copyArr = arr => {
   const results = [];
-  for (let i in arr) {
-    if (Array.isArray(i)) results.push(i);
-    else if (typeof i === 'object') results.push(i);
+  for (let i of arr) {
+    if (Array.isArray(i)) results.push(copyArr(i));
+    else if (typeof i === 'object') results.push(deepCopyObject(i));
     else results.push(i);
   }
   return results;
@@ -28,6 +28,7 @@ const deepCopyObject = obj => {
 };
 
 const newKim = deepCopyObject(kim);
+console.log(kim);
 
 newKim.addr = 'Daegu';
 newKim.oo.name = 'Kim';
@@ -36,4 +37,5 @@ newKim.arr[3].aid = 200;
 newKim.arr[4][1] = 300;
 newKim.oo.addr.city = 'Daejeon';
 
-console.log(kim, newKim);
+console.log(newKim);
+console.log(kim);

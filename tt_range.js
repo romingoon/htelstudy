@@ -22,7 +22,6 @@ const range = (start, end, cv) => {
   if (start !== end && (end - start) * cv < 0) return [];
 
   const temp = start;
-
   end = end ?? (start >= 0 ? ((start = start > 0 ? 1 : 0), temp) : -1);
   cv = cv ?? (start >= end ? -1 : 1);
 
