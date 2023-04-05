@@ -6,14 +6,13 @@ const keyPair = (arr, target) => {
   for (let num of arr) {
     const pair1 = target - num;
     const pair2 = target - pair1;
-    if (arr.includes(pair1) && pair1 < pair2)
+
+    if (pair1 < pair2 && arr.includes(pair1))
       return [arr.indexOf(pair1), arr.indexOf(pair2)];
   }
   return ret;
 };
 
-console.log(keyPair(arr1, 16));
-console.log(keyPair(arr2, 10));
-console.log(keyPair(arr3, 6));
-
-const keyPair2 = (arr, target) => {};
+console.log(keyPair(arr1, 10));
+console.log(keyPair(arr2, 6));
+console.log(keyPair(arr3, 7));
