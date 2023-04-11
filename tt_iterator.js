@@ -56,7 +56,8 @@ class Subway {
     let sIdx = LINE2.indexOf(this.start) - 1;
     let eIdx = LINE2.indexOf(this.end);
     let done = false;
-    console.log(sIdx, eIdx, LINE2[sIdx], LINE2[eIdx], LINE2.length);
+
+    // console.log(sIdx, eIdx, LINE2[sIdx], LINE2[eIdx], LINE2.length);
     return {
       next() {
         sIdx = sIdx === LINE2.length - 1 ? 0 : sIdx + 1;
@@ -68,10 +69,9 @@ class Subway {
   }
 }
 
-const routes1 = new Subway('충정로', '을지로입구');
+const routes1 = new Subway('을지로입구', '신당');
 const it = routes1[Symbol.iterator]();
 console.log([...routes1]);
-console.log(it.next());
 console.log(it.next());
 console.log(it.next());
 console.log(it.next());

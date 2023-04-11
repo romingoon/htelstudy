@@ -239,23 +239,57 @@ console.log(generatorGen.next(3));
 
 */
 
-function getUser(genObj, username) {
-  fetch(`https://api.github.com/users/${username}`)
+// function getUser(genObj, username) {
+//   fetch(`https://api.github.com/users/${username}`)
+//     .then((res) => res.json())
+//     .then((user) => genObj.next(user.name));
+// }
+
+// const g = (function* () {
+//   let user;
+
+//   user = yield getUser(g, 'jeresig');
+//   console.log(user);
+
+//   user = yield getUser(g, 'ahejlsberg');
+//   console.log(user);
+
+//   user = yield getUser(g, 'ungmo2');
+//   console.log(user);
+// })();
+// console.log(g.next());
+
+function getUser2(username) {
+  return fetch(`https://api.github.com/users/${username}`)
     .then((res) => res.json())
-    .then((user) => genObj.next(user.name));
+    .then((user) => user.name);
 }
 
-const g = (function* () {
+async function getUserAll() {
   let user;
 
-  user = yield getUser(g, 'jeresig');
+  user = await getUser2('jeresig');
   console.log(user);
 
-  user = yield getUser(g, 'ahejlsberg');
+  user = await getUser2('ahejlsberg');
   console.log(user);
 
-  user = yield getUser(g, 'ungmo2');
+  user = await getUser2('ungmo2');
   console.log(user);
-})();
+}
 
-console.log(g.next());
+getUserAll();
+
+console.log('--- 두 개의 수를 입력받아 더하기를 수행하는 제너레이터  작성---');
+function* add() {
+  const a = yield '첫번째 수?';
+  const b = yield '두번째 수?';
+
+  return a + b;
+}
+
+const generAdd = add();
+
+console.log(generAdd.next());
+console.log(generAdd.next(3));
+console.log(generAdd.next(4));

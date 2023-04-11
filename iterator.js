@@ -66,17 +66,17 @@ for (const letter of string) {
   console.log(letter);
 }
 
-(function () {
-  iterArg = arguments[Symbol.iterator]();
+// (function () {
+//   iterArg = arguments[Symbol.iterator]();
 
-  console.log('iterArg : ', iterArg.next());
-  console.log('iterArg : ', iterArg.next());
-  console.log('iterArg : ', iterArg.next());
+//   console.log('iterArg : ', iterArg.next());
+//   console.log('iterArg : ', iterArg.next());
+//   console.log('iterArg : ', iterArg.next());
 
-  for (const arg of arguments) {
-    console.log(arg);
-  }
-})(1, 2);
+//   for (const arg of arguments) {
+//     console.log(arg);
+//   }
+// })(1, 2);
 
 const book = [
   '반짝 반짝 작은 별',
