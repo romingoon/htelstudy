@@ -54,29 +54,31 @@ class Subway {
   }
   [Symbol.iterator]() {
     let sIdx = LINE2.indexOf(this.start) - 1;
-    let eIdx = LINE2.indexOf(this.end);
+
     let done = false;
 
-    // console.log(sIdx, eIdx, LINE2[sIdx], LINE2[eIdx], LINE2.length);
     return {
-      next() {
+      next: () => {
         sIdx = sIdx === LINE2.length - 1 ? 0 : sIdx + 1;
-        done = done || LINE2[sIdx - 1] === LINE2[eIdx];
-
+        done = done || LINE2[sIdx - 1] === this.end;
         return { value: done ? undefined : LINE2[sIdx], done };
       },
     };
   }
 }
 
-const routes1 = new Subway('을지로입구', '신당');
+const routes1 = new Subway('문래', '신촌');
 const it = routes1[Symbol.iterator]();
 console.log([...routes1]);
 console.log(it.next());
 console.log(it.next());
 console.log(it.next());
+console.log(it.next());
+console.log(it.next());
+console.log(it.next());
+console.log(it.next());
 
-const routes2 = new Subway('사당', '봉천');
+const routes2 = new Subway('구로디지털단지', '문래');
 console.log([...routes2]);
 const it2 = routes2[Symbol.iterator]();
 
