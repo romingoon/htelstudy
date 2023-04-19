@@ -53,15 +53,15 @@ class Subway {
     this.end = end;
   }
   [Symbol.iterator]() {
-    let sIdx = LINE2.indexOf(this.start) - 1;
+    let idx = LINE2.indexOf(this.start) - 1;
 
     let done = false;
 
     return {
       next: () => {
-        sIdx = sIdx === LINE2.length - 1 ? 0 : sIdx + 1;
-        done = done || LINE2[sIdx - 1] === this.end;
-        return { value: done ? undefined : LINE2[sIdx], done };
+        idx = idx === LINE2.length - 1 ? 0 : idx + 1;
+        done = done || LINE2[idx - 1] === this.end;
+        return { value: done ? undefined : LINE2[idx], done };
       },
     };
   }
@@ -78,7 +78,7 @@ console.log(it.next());
 console.log(it.next());
 console.log(it.next());
 
-const routes2 = new Subway('구로디지털단지', '문래');
+const routes2 = new Subway('이대', '을지로입구');
 console.log([...routes2]);
 const it2 = routes2[Symbol.iterator]();
 
